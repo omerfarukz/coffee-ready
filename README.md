@@ -2,7 +2,7 @@
 This project goal is have knownledgement about when the coffe is ready to have.
 
 ## Motivation
-We have a large team who uses a shared coffee machine, so there is many floors in our premise. I decided to get notified my collegues and also myself.
+We have a large team who uses a shared coffee machine, so there is many floors in our premise. I decided to get notified my colleagues and also myself.
 
 ## Solution
 I did not want to modify or solder the existing machine(s). Using camera and computer vision thinks are complex solutions. My solution should be simple. 
