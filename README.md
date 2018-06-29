@@ -10,6 +10,6 @@ Researched many ways to detection. Like a using computer vision, SCT sensors. De
 
 ## How it works
 - ACS712(Current sensor) is read to electrical current.
-- AtTiny read the data from ACS712. Calculates amperage and sends by serial to ESP8266(Because Esp8266 does not have an analog input)
-- ESP7266 receives amperage value from serial and transfer that to firebase(realtime database from google).
+- AtTiny read the data from ACS712. Calculates amperage and sends by serial to ESP8266(Because ESP8266 does not have an analog input)
+- ESP8266 receives amperage value from serial and transfer that to firebase(realtime database from google).
 - One cloud function(from google firebase platform) handles changes on data node and sends notification email.
