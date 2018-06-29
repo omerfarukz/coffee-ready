@@ -9,7 +9,7 @@ I did not want to modify or solder the existing machine(s). Using camera and com
 Researched many ways to detection. Like a using computer vision, SCT sensors. Decided to contious tracking of power consuption of our devices for signal processing.
 
 ## How it works
-- One wire from electric hub is connected to ACS712. (ACS712 is an electrical current.)
+- One wire from electric hub is connected to ACS712. ACS712 is an electrical current.
 - AtTiny read the data from ACS712. Calculates amperage and sends by serial connection to the ESP8266(Because ESP8266 does not have an analog input)
 - ESP8266 receives amperage value from serial connection and transfer that data to firebase(realtime database from google).
 - A cloud function (Cloud Functions from google firebase platform) handles changes on data and sends notification email when coffee is ready to have.
