@@ -13,7 +13,7 @@ Researched many ways to detection. Like a using computer vision, SCT sensors. De
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-06-29%20at%2014.23.12.png)
 
 ## How it works
-- One wire from electric hub is connected to ACS712. ACS712 is an electrical current.
+- One wire from electric hub is connected to ACS712. ACS712 is an electrical current sensor.
 - AtTiny read the data from ACS712. Calculates amperage and sends by serial connection to the ESP8266(Because ESP8266 does not have an analog input)
 - ESP8266 receives amperage value from serial connection and transfer that data to firebase(realtime database from google).
 - A cloud function (Cloud Functions from google firebase platform) handles changes on data and sends notification email when coffee is ready to have.
