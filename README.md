@@ -18,9 +18,12 @@ Researched many ways to detection. Like a using computer vision, SCT sensors. De
 - ESP8266 receives amperage value from serial connection and transfer that data to firebase(realtime database from google).
 - A cloud function (Cloud Functions from google firebase platform) handles changes on data and sends notification email when coffee is ready to have.
 
+## Wiring 
+Potantiometer is used as a sensor(replace it with ACS712)
+![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.49.39.png)
+
+
 ## Sample PCB desing
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.39.17.png)
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.39.43.png)
 
-## Wiring 
-![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.49.39.png)
