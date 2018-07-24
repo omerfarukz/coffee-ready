@@ -19,7 +19,7 @@ Researched many ways to detection. Like a using computer vision, SCT sensors. De
 - A cloud function (Cloud Functions from google firebase platform) handles changes on data and sends notification email when coffee is ready to have.
 
 ## Wiring 
-Potantiometer is used as a sensor(replace it with ACS712)
+Potantiometer is used as a sensor(so, you have to replace it with ACS712)
 ![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.49.39.png)
 
 
