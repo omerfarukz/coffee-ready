@@ -9,6 +9,7 @@ const TO_ADDRESSES = {
     DEBUG: "yourmail@gmail.com",
     COFFEE_READY: "yourmail@gmail.com"
 }
+
 const gmailEmail = functions.config().gmail.email;
 const gmailPassword = functions.config().gmail.password;
 const mailTransport = nodemailer.createTransport({
@@ -31,12 +32,19 @@ exports.onOfficeMachine = functions.database.ref('/machines/office/latest/durati
     sendEmail("Ready !", TO_ADDRESSES.COFFEE_READY, "READY", extraInformation);
 });
 
-exports.onWriteV14 = functions.database.ref('/state').onWrite(event => {
+exports.onWriteV15 = functions.database.ref('/state').onWrite(event => {
     const before = event.before.val();
     const after = event.after.val();
     console.log("before", "after", before, after);
 
-    if (parseInt(after.prediction) === 40) { // READY
+
+    if (parseInt(after.prediction) === 30) { // Boiling over 2 minutes
+        if(parseInt(before.prediction) === 25) {
+            sendEmail("Ready !", TO_ADDRESSES.COFFEE_READY, "BOILING", "");
+        }
+    }
+
+    if (parseInt(after.prediction) === 40) { // Ready
         let extraInformation = "";
         const boilingIn = parseFloat(before.boilingIn);
         const boilingInMinutes = Math.floor(parseFloat(boilingIn) / 60);
