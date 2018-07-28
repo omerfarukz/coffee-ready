@@ -20,7 +20,7 @@ Researched many ways to detection. Like a using computer vision, SCT sensors. De
 
 ## Wiring 
 Potantiometer is used as a sensor(so, you have to replace it with ACS712)
-![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%2018-07-25%20at%2013.30.21.png)
+![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-25%20at%2013.30.21.png)
 
 
 ## Sample PCB desing
