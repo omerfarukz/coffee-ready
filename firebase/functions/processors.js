@@ -1,5 +1,15 @@
 const common = require('./common');
 
+/*
+ * Processors are triggered when state is changed.
+ *
+ * before == after
+ *  |- state(1 = on, 0 = off)
+ *  |- age  (device's age in milliseconds )
+ *  |- at   (timestamp of event occured)
+ * 
+*/
+
 function logProcessor(before, after) {
     console.log("before", "after", before, after);
 }
