@@ -1,7 +1,7 @@
 const common = require('./common');
 
-function dummyProcessor(before, after) {
-    common.sendEmail("hello from dummyProcessor","");
+function logProcessor(before, after) {
+    console.log("before", "after", before, after);
 }
 
 function readyToHaveProcessor(before, after) {
@@ -15,7 +15,7 @@ function readyToHaveProcessor(before, after) {
 }
 
 const processors = [
-    dummyProcessor      ,
+    logProcessor        ,
     readyToHaveProcessor
 ];
 
