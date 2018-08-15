@@ -6,7 +6,6 @@
 #include <WiFiClient.h>
 
 #include <FirebaseArduino.h>
-#include <Pushover.h>
 
 ESP8266WebServer  server(80);
 
@@ -39,7 +38,6 @@ bool isStateChanged() {
 void stateChanged(bool state) {
   String data = "{\"state\":" + String(state) + "}";
   
-  sendNotification(data);
   sendDataToFirebase(true, data);
 }
 
@@ -99,15 +97,6 @@ void sendDataToFirebase(bool important, String data) {
 
     Serial.println("Data sent.");
     break;
-  }
-}
-
-void sendNotification(String message) {
-  if(USE_PUSHOVER) {
-    Pushover po = Pushover(PUSHOVER_APP_KEY, PUSHOVER_USER_KEY); // TODO:
-    po.setMessage(message);
-    po.setSound("bike");
-    po.send();
   }
 }
 
