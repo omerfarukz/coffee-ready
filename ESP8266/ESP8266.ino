@@ -1,4 +1,4 @@
-#include <Pushover.h>
+#include "configuration.h"
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
@@ -6,18 +6,12 @@
 #include <WiFiClient.h>
 
 #include <FirebaseArduino.h>
+#include <Pushover.h>
 
-#define       FIREBASE_HOST     ""
-#define       FIREBASE_AUTH     ""
+ESP8266WebServer  server(80);
 
-const char    ssid[]          = "";
-const char    wifiPassword[]  = "";
-
-ESP8266WebServer server(80);
-
-const float   treshold        = 3.0;
-float         current         = 0.0;
-float         previousCurrent = 0.0;
+float             current         = 0.0;
+float             previousCurrent = 0.0;
 
 void updateStatus() {
   // read sensor data from serial (or AtTiny)
@@ -53,7 +47,7 @@ void initWifi() {
   if(WiFi.status() == WL_CONNECTED)
     return;
   
-  WiFi.begin(ssid, wifiPassword);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
     delay(1000);
     Serial.println("Waiting for connection");
@@ -109,10 +103,12 @@ void sendDataToFirebase(bool important, String data) {
 }
 
 void sendNotification(String message) {
-    Pushover po = Pushover("az8ekn4an5okxr169iorprbqgrzbrc","gk4cd2ag8xj1uafdr7ivce6865iw3y"); // TODO:
+  if(USE_PUSHOVER) {
+    Pushover po = Pushover(PUSHOVER_APP_KEY, PUSHOVER_USER_KEY); // TODO:
     po.setMessage(message);
     po.setSound("intermission");
     po.send();
+  }
 }
 
 void setup() {

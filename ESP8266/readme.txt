@@ -1,0 +1,1 @@
+Rename configuration.sample.h to configuration.h and configure it.
