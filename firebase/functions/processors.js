@@ -13,7 +13,7 @@ function readyToHaveProcessor(before, after) {
         }
     }
 }
-//
+
 const processors = [
     dummyProcessor      ,
     readyToHaveProcessor
