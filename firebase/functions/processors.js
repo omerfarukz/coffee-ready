@@ -1,15 +1,13 @@
 const common = require('./common');
 
-/*
- * Processors are triggered when state is changed.
+/* Processors are triggered when state is changed.
  * So, when the state is changed to 1 then you have a data about 0 state on [after]
  *
- * before == after == data
- *  |- state    (boolean,   1 = on, 0 = off)
- *  |- age      (ulong,     device's age in milliseconds )
- *  |- at       (unix time, timestamp of event occured in milliseconds)
- * 
-*/
+ * [before] === [after]
+ *  |- state    ( boolean,   1 = on, 0 = off                            )
+ *  |- age      ( ulong,     device's age in milliseconds               )
+ *  |- at       ( unix time, timestamp of event occured in milliseconds )
+ */
 
 function logProcessor(before, after) {
     console.log("before", "after", before, after);
