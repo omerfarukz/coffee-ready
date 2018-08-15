@@ -21,7 +21,7 @@ void updateStatus() {
       current = value;
 
     if(isStateChanged()) {
-      bool  previousState = (previousCurrent > treshold);
+      bool  previousState = (previousCurrent > TRESHOLD);
       stateChanged(previousState);
     }
 
@@ -31,8 +31,8 @@ void updateStatus() {
 
 bool isStateChanged() {
   return (
-      (current > treshold && previousCurrent < treshold) || // started
-      (current < treshold && previousCurrent > treshold)    // stopped
+      (current > TRESHOLD && previousCurrent < TRESHOLD) || // started
+      (current < TRESHOLD && previousCurrent > TRESHOLD)    // stopped
   );
 }
 
@@ -106,7 +106,7 @@ void sendNotification(String message) {
   if(USE_PUSHOVER) {
     Pushover po = Pushover(PUSHOVER_APP_KEY, PUSHOVER_USER_KEY); // TODO:
     po.setMessage(message);
-    po.setSound("intermission");
+    po.setSound("bike");
     po.send();
   }
 }
