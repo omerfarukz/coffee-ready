@@ -14,7 +14,7 @@ function logProcessor(before, after) {
 }
 
 function readyToHaveProcessor(before, after) {
-    if (before.state === 0 && after.state === 1) {
+    if (before !== null && before.state === 0 && after.state === 1) {
         // get duration in minutes
         const minutes = Math.floor((after.at - before.at) / 60000.0);
         // is it over 3 minutes in power on state
@@ -22,6 +22,7 @@ function readyToHaveProcessor(before, after) {
             // use minutes as a prediction data
             const content = minutes > 0 ? "Cups: " + minutes + "+ " : "";
             common.sendEmail("READY", content);
+            common.sendPush("READY", content);
         }
     }
 }

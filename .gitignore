@@ -74,3 +74,6 @@ typings/
 
 #esp8266 config
 ESP8266/configuration.h
+
+firebase/node_modules/
+firebase/functions/node_modules/

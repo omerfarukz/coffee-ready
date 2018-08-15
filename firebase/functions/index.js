@@ -33,3 +33,10 @@ exports.onCurrentWrite = functions.database.ref('/current').onWrite(event => {
     var item = { value: after, duration: (after.at - before.at) };
     return admin.database().ref('/log').push(item, (e) => { return null; });
 });
+
+exports.onSampleWrite = functions.database.ref('/sample').onWrite(event => {
+    const after = event.after.val();
+    if(after.title && after.message) {
+        common.sendPush(after.title, after.message);
+    }
+});
