@@ -2,11 +2,12 @@ const common = require('./common');
 
 /*
  * Processors are triggered when state is changed.
+ * So, when the state is changed to 1 then you have a data about 0 state on [after]
  *
- * before == after
- *  |- state(1 = on, 0 = off)
- *  |- age  (device's age in milliseconds )
- *  |- at   (timestamp of event occured)
+ * before == after == data
+ *  |- state    (boolean,   1 = on, 0 = off)
+ *  |- age      (ulong,     device's age in milliseconds )
+ *  |- at       (unix time, timestamp of event occured in milliseconds)
  * 
 */
 
