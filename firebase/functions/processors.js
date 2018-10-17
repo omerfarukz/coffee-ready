@@ -10,17 +10,20 @@ const common = require('./common');
  */
 
 function logProcessor(before, after) {
-    console.log("before", "after", before, after);
+    var duration = (after.at - before.at) / 60000.0;
+    console.log("duration", "before", "after", duration.toFixed(2), before, after);
 }
 
 function readyToHaveProcessor(before, after) {
     if (before !== null && before.state === 0 && after.state === 1) {
         // get duration in minutes
-        const minutes = Math.floor((after.at - before.at) / 60000.0);
-        // is it over 3 minutes in power on state
-        if (minutes > 3) {
-            // use minutes as a prediction data
-            const content = minutes > 0 ? "Cups: " + minutes + "+ " : "";
+        const minutes = (after.at - before.at) / 60000.0;
+        // is it over x minutes in power on state
+        if (minutes > 2) {
+            // TODO: Calculations must be preconfigured for devices. Forecasted for a specific device. 
+            const content = "Brewing Time: " + minutes.toFixed(2) + " minutes. " +
+                            "Cups: " + Math.round(minutes * 2) + " / " + Math.round(minutes * 4 / 3) + " (beta)";
+                            
             common.sendEmail("READY", content);
             common.sendPush("READY", content);
         }
