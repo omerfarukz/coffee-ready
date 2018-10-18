@@ -21,9 +21,9 @@ function readyToHaveProcessor(before, after) {
         // is it over x minutes in power on state
         if (minutes > 2) {
             // TODO: Calculations must be preconfigured for devices. Forecasted for a specific device. 
-            const content = "Brewing Time: " + minutes.toFixed(2) + " minutes. " +
-                            "Cups: " + Math.round(minutes * 2) + " / " + Math.round(minutes * 4 / 3) + " (beta)";
-                            
+            //const fillFactor = 1.333;
+            //const content = "Cups: " + Math.floor(minutes * fillFactor) + "+ (beta)";
+            const content = ""; // TODO:
             common.sendEmail("READY", content);
             common.sendPush("READY", content);
         }
