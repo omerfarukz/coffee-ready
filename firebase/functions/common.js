@@ -27,29 +27,66 @@ exports.sendEmail = function (subject, text) {
 
 }
 // both of parameters are required
+// TODO: create notification hub interface and add pushover, pushbullet and email to that
 exports.sendPush = function (title, text) {
-    const isPushoverEnabled = functions.config().pushover.enabled;
+    try {
+        //pushbullet
+        var request = require('request');
+        const options = {
+            url: 'https://api.pushbullet.com/v2/pushes',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Token': functions.config().pushbullet.apikey
+            },
+            json: {
+                "body": text,
+                "title": title,
+                "channel_tag": functions.config().pushbullet.app,
+                "type": "note"
+            }
+        };
 
-    if(!isPushoverEnabled && isPushoverEnabled !== 1) {
-        console.log("Pushover is not enabled. To enable this set pushover.enabled to 1");
-        return;
+        request.post(options,
+            (error, response, body) => {
+                if(error)
+                    console.error(error);
+                //console.log(error, response, body);
+            }
+        );
+    } catch (error) {
+        console.error("pushbullet-error", error);
     }
 
-    var push = new Push({
-        user: functions.config().pushover.user,
-        token: functions.config().pushover.token
-    });
+    try {
+        //pushover
+        const isPushoverEnabled = functions.config().pushover.enabled;
 
-    var message = {
-        message: (text && text.length === 0 ? "-" : text),
-        title: title,
-        sound: 'magic'
-    };
+        if (!isPushoverEnabled && isPushoverEnabled !== 1) {
+            console.log("Pushover is not enabled. To enable this set pushover.enabled to 1");
+            return;
+        }
 
-    push.send(message, (err, result) => {
-        if (err)
-            console.log(err, "pushover");
+        var push = new Push({
+            user: functions.config().pushover.user,
+            token: functions.config().pushover.token
+        });
 
-        console.log(result)
-    });
+        var message = {
+            message: (text && text.length === 0 ? "-" : text),
+            title: title,
+            sound: 'magic'
+        };
+
+        push.send(message, (err, result) => {
+            if (err)
+                console.log(err, "pushover");
+
+            console.log(result)
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
+
 }

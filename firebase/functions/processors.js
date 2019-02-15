@@ -1,3 +1,4 @@
+const functions = require('firebase-functions');
 const common = require('./common');
 
 /* Processors are triggered when state is changed.
@@ -19,20 +20,45 @@ function readyToHaveProcessor(before, after) {
         // get duration in minutes
         const minutes = (after.at - before.at) / 60000.0;
         // is it over x minutes in power on state
-        if (minutes > 2) {
-            // TODO: Calculations must be preconfigured for devices. Forecasted for a specific device. 
-            //const fillFactor = 1.333;
-            //const content = "Cups: " + Math.floor(minutes * fillFactor) + "+ (beta)";
-            const content = ""; // TODO:
+        if (minutes > 2.0) {
+            const content = "Your coffee is ready to have."; // TODO:
             common.sendEmail("READY", content);
             common.sendPush("READY", content);
+        }
+        else {
+            console.log("ignored for " + minutes + " min(s)");
+        }
+    }
+}
+
+function brewingProcessor_v3(before, after) {
+    if (before !== null && before.state === 1 && after.state === 0) {
+        const minutes = (after.at - before.at) / 60000.0;
+        if (minutes > 15.0) {
+            const content = "This message is generated automatically by the coffee machine. The coffee machine began working again after a long while. It's probably brewing coffee. Keep calm and get ready.\r\n\r\n" +
+                            "If you would like to contribute to this project, feel free to create PR on the https://github.com/omerfarukz/coffee-ready repository.\r\n\r\n" +
+                            "Disclaimer: There may be grammar issues. It may have been turned on by mistake. Due to software problems, information can be sent incorrectly.";
+
+            common.sendEmail("BREWING", content);
+            common.sendPush("BREWING", content);
+        }
+    }
+}
+
+function debugOverPush(before, after) {
+    if (functions.config().app.debug === "1") {
+        if (before !== null && after !== null) {
+            const minutes = (after.at - before.at) / 60000.0;
+            common.sendPush("State is changed " + before.state + " to " + after.state, "min(s): " + minutes);
         }
     }
 }
 
 const processors = [
     logProcessor,
-    readyToHaveProcessor
+    debugOverPush,
+    readyToHaveProcessor,
+    brewingProcessor_v3
 ];
 
 exports.all = processors;

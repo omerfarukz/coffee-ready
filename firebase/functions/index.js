@@ -40,3 +40,10 @@ exports.onSampleWrite = functions.database.ref('/sample').onWrite(event => {
         common.sendPush(after.title, after.message);
     }
 });
+
+exports.notify_v6 = functions.database.ref('/notify').onWrite(event => {
+    const after = event.after.val()
+    common.sendEmail(after.title, after.body);
+    common.sendPush(after.title, after.body);
+    return true;
+});
