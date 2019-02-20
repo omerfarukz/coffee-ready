@@ -14,7 +14,7 @@ exports.onCurrentWrite = functions.database.ref('/current').onWrite(event => {
         console.log("Ignored data multipication", before.age)
         return null;
     }
-
+    
     console.log("Processors", processors.all);
 
     for (var i = 0; i < processors.all.length; i++) {

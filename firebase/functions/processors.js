@@ -31,13 +31,11 @@ function readyToHaveProcessor(before, after) {
     }
 }
 
-function brewingProcessor_v3(before, after) {
+function brewingProcessor(before, after) {
     if (before !== null && before.state === 1 && after.state === 0) {
         const minutes = (after.at - before.at) / 60000.0;
         if (minutes > 15.0) {
-            const content = "This message is generated automatically by the coffee machine. The coffee machine began working again after a long while. It's probably brewing coffee. Keep calm and get ready.\r\n\r\n" +
-                            "If you would like to contribute to this project, feel free to create PR on the https://github.com/omerfarukz/coffee-ready repository.\r\n\r\n" +
-                            "Disclaimer: There may be grammar issues. It may have been turned on by mistake. Due to software problems, information can be sent incorrectly.";
+            const content = "The coffee machine began working again after a long while. It's probably brewing coffee. Keep calm and get ready.";
 
             common.sendEmail("BREWING", content);
             common.sendPush("BREWING", content);
@@ -58,7 +56,7 @@ const processors = [
     logProcessor,
     debugOverPush,
     readyToHaveProcessor,
-    brewingProcessor_v3
+    brewingProcessor
 ];
 
 exports.all = processors;

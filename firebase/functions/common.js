@@ -1,5 +1,4 @@
 const functions = require('firebase-functions');
-const Push = require('pushover-notifications')
 const nodemailer = require('nodemailer');
 
 const mailTransport = nodemailer.createTransport({
@@ -26,8 +25,8 @@ exports.sendEmail = function (subject, text) {
     });
 
 }
+
 // both of parameters are required
-// TODO: create notification hub interface and add pushover, pushbullet and email to that
 exports.sendPush = function (title, text) {
     try {
         //pushbullet
@@ -48,45 +47,11 @@ exports.sendPush = function (title, text) {
         };
 
         request.post(options,
-            (error, response, body) => {
+            (error) => {
                 if(error)
-                    console.error(error);
-                //console.log(error, response, body);
-            }
+                    console.error(error);            }
         );
     } catch (error) {
         console.error("pushbullet-error", error);
     }
-
-    try {
-        //pushover
-        const isPushoverEnabled = functions.config().pushover.enabled;
-
-        if (!isPushoverEnabled && isPushoverEnabled !== 1) {
-            console.log("Pushover is not enabled. To enable this set pushover.enabled to 1");
-            return;
-        }
-
-        var push = new Push({
-            user: functions.config().pushover.user,
-            token: functions.config().pushover.token
-        });
-
-        var message = {
-            message: (text && text.length === 0 ? "-" : text),
-            title: title,
-            sound: 'magic'
-        };
-
-        push.send(message, (err, result) => {
-            if (err)
-                console.log(err, "pushover");
-
-            console.log(result)
-        });
-    } catch (error) {
-        console.error(error);
-    }
-
-
 }
