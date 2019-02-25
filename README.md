@@ -4,6 +4,10 @@ This project goal is have acknowledgement about when the coffee is ready to have
 ## Motivation
 We have a large team who uses a shared coffee machine, so there is many floors in our premise. I decided to notify me and my colleagues.
 
+## Links
+https://medium.com/@ulrozremo/monitoring-coffee-machine-783486bd395d
+https://hackaday.com/2018/08/24/tracking-the-office-coffee-machines-using-current-draw/
+
 ## Solution
 I did not want to modify or solder the existing machine(s). Using camera and computer vision thinks are complex solutions. My solution should be simple. 
 Researched many ways to detection tecniques like a using computer vision, SCT sensors. Decided to contious tracking of power consuption of our devices for signal processing.
