@@ -6,6 +6,7 @@ We have a large team who uses a shared coffee machine, so there is many floors i
 
 ## Links
 https://medium.com/@ulrozremo/monitoring-coffee-machine-783486bd395d
+
 https://hackaday.com/2018/08/24/tracking-the-office-coffee-machines-using-current-draw/
 
 ## Solution
