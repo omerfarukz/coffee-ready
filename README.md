@@ -28,7 +28,4 @@ Potantiometer is used as a sensor(so, you have to replace it with ACS712)
 ![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-25%20at%2013.30.21.png)
 
 
-## Sample PCB desing
-![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.39.17.png)
-![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-24%20at%2013.39.43.png)
 
