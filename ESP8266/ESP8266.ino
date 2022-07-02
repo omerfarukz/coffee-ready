@@ -9,8 +9,8 @@
 
 ESP8266WebServer  server(80);
 
-float             current         = 0.0;
-float             previousCurrent = 0.0;
+float current         = 0.0;
+float previousCurrent = 0.0;
 
 void updateStatus() {
   // read sensor data from serial (or AtTiny)
