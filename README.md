@@ -24,7 +24,8 @@ I have research for different ways of detection tecniques like a using computer 
 - https://hackaday.com/2018/08/24/tracking-the-office-coffee-machines-using-current-draw/
 
 ## Wiring 
-Potantiometer is used as a sensor(so, you have to replace it with ACS712)
+Potantiometer is demonstrated as a sensor(so, you have to replace it with ACS712)
+
 ![Potantiometer is used as a sensor](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-07-25%20at%2013.30.21.png)
 
 
