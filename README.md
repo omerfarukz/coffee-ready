@@ -1,27 +1,27 @@
 # Coffee Ready!
-This project goal is have acknowledgement about when the coffee is ready to have.
+This project  a fun project about having notification from my coffee machine like 'your coffee is ready to have' :)
 
 ## Motivation
-We have a large team who uses a shared coffee machine, so there is many floors in our premise. I decided to notify me and my colleagues.
+In my office, we have a single filter coffee machine. I we usually brew for five or more people but it is very hard to inform people who would like to have. So, I decided to build unharmful(for machine) way to send notifications automatically.
 
-### Articles
-https://medium.com/@ulrozremo/monitoring-coffee-machine-783486bd395d
-
-https://hackaday.com/2018/08/24/tracking-the-office-coffee-machines-using-current-draw/
 
 ## Solution
-I did not want to modify or solder the existing machine(s). Using camera and computer vision thinks are complex solutions. My solution should be simple. 
-Researched many ways to detection tecniques like a using computer vision, SCT sensors. Decided to contious tracking of power consuption of our devices for signal processing.
+I did not want to modify or solder the existing machine(s). My solution should be simple. 
+I have research for different ways of detection tecniques like a using computer vision, SCT sensors. They are so complex or less effective. My choice was observing power consumption of the device for signal processing.
 
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-06-29%20at%2014.23.54.png)
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-06-29%20at%2014.23.34.png)
 ![](https://raw.githubusercontent.com/omerfarukz/coffee-ready/master/images/Screen%20Shot%202018-06-29%20at%2014.23.12.png)
 
 ## How it works
-- One wire from electric hub is bypassed by ACS712. ACS712 is an electrical current sensor.
-- AtTiny read the data from ACS712. Calculates amperage and sends by serial connection to the ESP8266(Because ESP8266 does not have an analog input)
+- One wire from power plug is bridged by ACS712. ACS712 is an electrical current sensor.
+- ATTiny works like a analog to digital converter from ACS712 to ESP8266. It proces data of amperage and send by serial connection to the ESP8266(Because ESP8266 does not have an analog input)
 - ESP8266 receives amperage value from serial connection and transfer that data to firebase(realtime database from google).
-- A cloud function (Cloud Functions from google firebase platform) handles changes on data and sends notification email when coffee is ready to have.
+- A cloud function (google firebase platform) has triggers for changes on data and send notification(via different channels) when coffee is ready to have.
+
+### Articles
+- https://medium.com/@ulrozremo/monitoring-coffee-machine-783486bd395d
+- https://hackaday.com/2018/08/24/tracking-the-office-coffee-machines-using-current-draw/
 
 ## Wiring 
 Potantiometer is used as a sensor(so, you have to replace it with ACS712)
